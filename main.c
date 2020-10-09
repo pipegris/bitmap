@@ -54,5 +54,10 @@ int main() {
     printf("Finalizado....\n");
     getchar();
     Matrix_Free(mat, m);
+
+    if (function == 9) {
+        free(ulist);
+    }
+
     return 1;
 }
