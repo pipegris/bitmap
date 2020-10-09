@@ -34,14 +34,14 @@
 
             <ul class="list-unstyled components">
                 <li class="active"><a data-operation="1" href="#">Identidad</a></li>
-                <li><a data-operation="2" href="#">Negativo</a></li>
-                <li><a data-operation="3" href="#">Umbral</a></li>
-                <li><a data-operation="4" href="#">Umbral binario</a></li>
-                <li><a data-operation="5" href="#">Umbral binario invertido</a></li>
-                <li><a data-operation="6" href="#">Umbral grises</a></li>
-                <li><a data-operation="7" href="#">Umbral grises invertido</a></li>
-                <li><a data-operation="8" href="#">Extensión</a></li>
-                <li><a data-operation="9" href="#">Reducción de grises</a></li>
+                <li><a data-operation="2" data-params="" href="#">Negativo</a></li>
+                <li><a data-operation="3" data-params="u=60" href="#">Umbral</a></li>
+                <li><a data-operation="4" data-params="u1=50, u2=180" href="#">Umbral binario</a></li>
+                <li><a data-operation="5" data-params="u1=50, u2=180" href="#">Umbral binario invertido</a></li>
+                <li><a data-operation="6" data-params="u1=50, u2=180" href="#">Umbral grises</a></li>
+                <li><a data-operation="7" data-params="u1=50, u2=180" href="#">Umbral grises invertido</a></li>
+                <li><a data-operation="8" data-params="u1=50, u2=180" href="#">Extensión</a></li>
+                <li><a data-operation="9" data-params="u=[50,120,180,220]" href="#">Reducción de grises</a></li>
 
             </ul>
             <ul class="list-unstyled">
@@ -62,10 +62,14 @@
                         <span></span>
                         <span></span>
                     </button>
+
+
+                    <h5 id="function-params" class="col text-center"></h4>
+
+
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarImageSelection" aria-controls="navbarImageSelection" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarImageSelection">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active"><a data-sample="2" class="nav-link" href="#">Rana</a></li>
@@ -82,7 +86,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-2"></div>
-                    <div id="slider-container" style="max-width:600px; height:400px">
+                    <div id="slider-container" style="max-width:700px; height:400px">
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
@@ -124,14 +128,17 @@
 
 
             $('#sidebar .components a').click(function() {
-                currentOperation = $(this).data('operation');
+                let self = $(this);
 
-                $(this).closest('ul').find('li.active').removeClass('active');
+                currentOperation = self.data('operation');
 
-                $(this).parent().addClass('active');
+                self.closest('ul').find('li.active').removeClass('active');
+
+                self.parent().addClass('active');
                 
                 resetSlider('#slider-container', currentImage, currentOperation);
 
+                $('#function-params').text(self.data('params'));
 
             });
 
